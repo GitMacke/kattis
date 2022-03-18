@@ -51,16 +51,20 @@ def solveGrid(grid,shipsizes):
         placements = getPlacements(grid,shipsize)
         for placement in placements:
             if placement not in triedplacements:
-                print(placement)
-                triedplacements.add(placement)
                 subgrid = np.copy(grid)
-                start,end = placement
-                print(start)
-                sys.exit()
-                tot +=solveGrid(subgrid,shipsizes.intersection(set(shipsize)))
+                if len(placement) == 1:
+                    x,y = list(placement)[0]
+                    subgrid[x,y] = 0
+                else:
+                    start, end = placement
+                    for x in range(min(start[0],end[0]),max(start[0],end[0])):
+                        for y in range(min(start[1],end[1]),max(start[1],end[1])):
+                            subgrid[x,y] = 0
+                tot +=solveGrid(subgrid,shipsizes.copy().remove(shipsize))
+                triedplacements.add(placement)
     return tot
 
-solveGrid(grid,shipsizes)
+print(solveGrid(grid,shipsizes))
         
 
 getPlacements(grid,2)
