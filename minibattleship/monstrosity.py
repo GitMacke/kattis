@@ -32,7 +32,8 @@ while line:
 #placementTime = 0
 #totStart = time.time()
 n_ones = shipsizes[1]
-def calcSingles(grid,nsingles):
+def calcSingles(grid):
+    nsingles = n_ones
     Os_left = sum([grid[o[0]][o[1]] for o in Os])
     if Os_left>nsingles:
         return 0
@@ -89,6 +90,8 @@ shipsizes[0] = 0
 
 if shipsize_zero == 0:
     tot += all([1-grid[o[0]][o[1]] for o in Os])
+elif shipsize_zero == 1:
+    tot += calcSingles(grid)
 else:
     for i_zero in range(n):
         for c_zero in range(n-shipsize_zero+1):
@@ -99,7 +102,7 @@ else:
                 if shipsize_one == 0:
                     tot += all([1-grid[o[0]][o[1]] for o in Os])
                 elif shipsize_one == 1:
-                    tot+=calcSingles(grid,n_ones)
+                    tot+=calcSingles(grid)
                 else:
                     for i_one in range(n):
                         for c_one in range(n-shipsize_one+1):
@@ -110,7 +113,7 @@ else:
                                 if shipsize_two == 0:
                                     tot += all([1-grid[o[0]][o[1]] for o in Os])
                                 elif shipsize_two == 1:
-                                    tot+=calcSingles(grid,n_ones)
+                                    tot+=calcSingles(grid)
                                 else:
                                     for i_two in range(n):
                                         for c_two in range(n-shipsize_two+1):
@@ -121,7 +124,7 @@ else:
                                                 if shipsize_three == 0:
                                                     tot += all([1-grid[o[0]][o[1]] for o in Os])
                                                 elif shipsize_three == 1:
-                                                    tot+=calcSingles(grid,n_ones)
+                                                    tot+=calcSingles(grid)
                                                 else:
                                                     for i_three in range(n):
                                                         for c_three in range(n-shipsize_three+1):
@@ -132,7 +135,7 @@ else:
                                                                 if shipsize_four == 0:
                                                                     tot += all([1-grid[o[0]][o[1]] for o in Os])
                                                                 elif shipsize_four == 1:
-                                                                    tot+=calcSingles(grid,n_ones)
+                                                                    tot+=calcSingles(grid)
                                                                 else:
                                                                     for i_four in range(n):
                                                                         for c_four in range(n-shipsize_four+1):
@@ -164,7 +167,7 @@ else:
                                                                 if shipsize_four == 0:
                                                                     tot += all([1-grid[o[0]][o[1]] for o in Os])
                                                                 elif shipsize_four == 1:
-                                                                    tot+=calcSingles(grid,n_ones)
+                                                                    tot+=calcSingles(grid)
                                                                 else:
                                                                     for i_four in range(n):
                                                                         for c_four in range(n-shipsize_four+1):
@@ -199,7 +202,7 @@ else:
                                                 if shipsize_three == 0:
                                                     tot += all([1-grid[o[0]][o[1]] for o in Os])
                                                 elif shipsize_three == 1:
-                                                    tot+=calcSingles(grid,n_ones)
+                                                    tot+=calcSingles(grid)
                                                 else:
                                                     for i_three in range(n):
                                                         for c_three in range(n-shipsize_three+1):
@@ -210,7 +213,7 @@ else:
                                                                 if shipsize_four == 0:
                                                                     tot += all([1-grid[o[0]][o[1]] for o in Os])
                                                                 elif shipsize_four == 1:
-                                                                    tot+=calcSingles(grid,n_ones)
+                                                                    tot+=calcSingles(grid)
                                                                 else:
                                                                     for i_four in range(n):
                                                                         for c_four in range(n-shipsize_four+1):
@@ -242,7 +245,7 @@ else:
                                                                 if shipsize_four == 0:
                                                                     tot += all([1-grid[o[0]][o[1]] for o in Os])
                                                                 elif shipsize_four == 1:
-                                                                    tot+=calcSingles(grid,n_ones)
+                                                                    tot+=calcSingles(grid)
                                                                 else:
                                                                     for i_four in range(n):
                                                                         for c_four in range(n-shipsize_four+1):
@@ -280,7 +283,7 @@ else:
                                 if shipsize_two == 0:
                                     tot += all([1-grid[o[0]][o[1]] for o in Os])
                                 elif shipsize_two == 1:
-                                    tot+=calcSingles(grid,n_ones)
+                                    tot+=calcSingles(grid)
                                 else:
                                     for i_two in range(n):
                                         for c_two in range(n-shipsize_two+1):
@@ -291,7 +294,7 @@ else:
                                                 if shipsize_three == 0:
                                                     tot += all([1-grid[o[0]][o[1]] for o in Os])
                                                 elif shipsize_three == 1:
-                                                    tot+=calcSingles(grid,n_ones)
+                                                    tot+=calcSingles(grid)
                                                 else:
                                                     for i_three in range(n):
                                                         for c_three in range(n-shipsize_three+1):
@@ -302,7 +305,7 @@ else:
                                                                 if shipsize_four == 0:
                                                                     tot += all([1-grid[o[0]][o[1]] for o in Os])
                                                                 elif shipsize_four == 1:
-                                                                    tot+=calcSingles(grid,n_ones)
+                                                                    tot+=calcSingles(grid)
                                                                 else:
                                                                     for i_four in range(n):
                                                                         for c_four in range(n-shipsize_four+1):
@@ -334,7 +337,7 @@ else:
                                                                 if shipsize_four == 0:
                                                                     tot += all([1-grid[o[0]][o[1]] for o in Os])
                                                                 elif shipsize_four == 1:
-                                                                    tot+=calcSingles(grid,n_ones)
+                                                                    tot+=calcSingles(grid)
                                                                 else:
                                                                     for i_four in range(n):
                                                                         for c_four in range(n-shipsize_four+1):
@@ -369,7 +372,7 @@ else:
                                                 if shipsize_three == 0:
                                                     tot += all([1-grid[o[0]][o[1]] for o in Os])
                                                 elif shipsize_three == 1:
-                                                    tot+=calcSingles(grid,n_ones)
+                                                    tot+=calcSingles(grid)
                                                 else:
                                                     for i_three in range(n):
                                                         for c_three in range(n-shipsize_three+1):
@@ -380,7 +383,7 @@ else:
                                                                 if shipsize_four == 0:
                                                                     tot += all([1-grid[o[0]][o[1]] for o in Os])
                                                                 elif shipsize_four == 1:
-                                                                    tot+=calcSingles(grid,n_ones)
+                                                                    tot+=calcSingles(grid)
                                                                 else:
                                                                     for i_four in range(n):
                                                                         for c_four in range(n-shipsize_four+1):
@@ -412,7 +415,7 @@ else:
                                                                 if shipsize_four == 0:
                                                                     tot += all([1-grid[o[0]][o[1]] for o in Os])
                                                                 elif shipsize_four == 1:
-                                                                    tot+=calcSingles(grid,n_ones)
+                                                                    tot+=calcSingles(grid)
                                                                 else:
                                                                     for i_four in range(n):
                                                                         for c_four in range(n-shipsize_four+1):
@@ -453,7 +456,7 @@ else:
                 if shipsize_one == 0:
                     tot += all([1-grid[o[0]][o[1]] for o in Os])
                 elif shipsize_one == 1:
-                    tot+=calcSingles(grid,n_ones)
+                    tot+=calcSingles(grid)
                 else:
                     for i_one in range(n):
                         for c_one in range(n-shipsize_one+1):
@@ -464,7 +467,7 @@ else:
                                 if shipsize_two == 0:
                                     tot += all([1-grid[o[0]][o[1]] for o in Os])
                                 elif shipsize_two == 1:
-                                    tot+=calcSingles(grid,n_ones)
+                                    tot+=calcSingles(grid)
                                 else:
                                     for i_two in range(n):
                                         for c_two in range(n-shipsize_two+1):
@@ -475,7 +478,7 @@ else:
                                                 if shipsize_three == 0:
                                                     tot += all([1-grid[o[0]][o[1]] for o in Os])
                                                 elif shipsize_three == 1:
-                                                    tot+=calcSingles(grid,n_ones)
+                                                    tot+=calcSingles(grid)
                                                 else:
                                                     for i_three in range(n):
                                                         for c_three in range(n-shipsize_three+1):
@@ -486,7 +489,7 @@ else:
                                                                 if shipsize_four == 0:
                                                                     tot += all([1-grid[o[0]][o[1]] for o in Os])
                                                                 elif shipsize_four == 1:
-                                                                    tot+=calcSingles(grid,n_ones)
+                                                                    tot+=calcSingles(grid)
                                                                 else:
                                                                     for i_four in range(n):
                                                                         for c_four in range(n-shipsize_four+1):
@@ -518,7 +521,7 @@ else:
                                                                 if shipsize_four == 0:
                                                                     tot += all([1-grid[o[0]][o[1]] for o in Os])
                                                                 elif shipsize_four == 1:
-                                                                    tot+=calcSingles(grid,n_ones)
+                                                                    tot+=calcSingles(grid)
                                                                 else:
                                                                     for i_four in range(n):
                                                                         for c_four in range(n-shipsize_four+1):
@@ -553,7 +556,7 @@ else:
                                                 if shipsize_three == 0:
                                                     tot += all([1-grid[o[0]][o[1]] for o in Os])
                                                 elif shipsize_three == 1:
-                                                    tot+=calcSingles(grid,n_ones)
+                                                    tot+=calcSingles(grid)
                                                 else:
                                                     for i_three in range(n):
                                                         for c_three in range(n-shipsize_three+1):
@@ -564,7 +567,7 @@ else:
                                                                 if shipsize_four == 0:
                                                                     tot += all([1-grid[o[0]][o[1]] for o in Os])
                                                                 elif shipsize_four == 1:
-                                                                    tot+=calcSingles(grid,n_ones)
+                                                                    tot+=calcSingles(grid)
                                                                 else:
                                                                     for i_four in range(n):
                                                                         for c_four in range(n-shipsize_four+1):
@@ -596,7 +599,7 @@ else:
                                                                 if shipsize_four == 0:
                                                                     tot += all([1-grid[o[0]][o[1]] for o in Os])
                                                                 elif shipsize_four == 1:
-                                                                    tot+=calcSingles(grid,n_ones)
+                                                                    tot+=calcSingles(grid)
                                                                 else:
                                                                     for i_four in range(n):
                                                                         for c_four in range(n-shipsize_four+1):
@@ -634,7 +637,7 @@ else:
                                 if shipsize_two == 0:
                                     tot += all([1-grid[o[0]][o[1]] for o in Os])
                                 elif shipsize_two == 1:
-                                    tot+=calcSingles(grid,n_ones)
+                                    tot+=calcSingles(grid)
                                 else:
                                     for i_two in range(n):
                                         for c_two in range(n-shipsize_two+1):
@@ -645,7 +648,7 @@ else:
                                                 if shipsize_three == 0:
                                                     tot += all([1-grid[o[0]][o[1]] for o in Os])
                                                 elif shipsize_three == 1:
-                                                    tot+=calcSingles(grid,n_ones)
+                                                    tot+=calcSingles(grid)
                                                 else:
                                                     for i_three in range(n):
                                                         for c_three in range(n-shipsize_three+1):
@@ -656,7 +659,7 @@ else:
                                                                 if shipsize_four == 0:
                                                                     tot += all([1-grid[o[0]][o[1]] for o in Os])
                                                                 elif shipsize_four == 1:
-                                                                    tot+=calcSingles(grid,n_ones)
+                                                                    tot+=calcSingles(grid)
                                                                 else:
                                                                     for i_four in range(n):
                                                                         for c_four in range(n-shipsize_four+1):
@@ -688,7 +691,7 @@ else:
                                                                 if shipsize_four == 0:
                                                                     tot += all([1-grid[o[0]][o[1]] for o in Os])
                                                                 elif shipsize_four == 1:
-                                                                    tot+=calcSingles(grid,n_ones)
+                                                                    tot+=calcSingles(grid)
                                                                 else:
                                                                     for i_four in range(n):
                                                                         for c_four in range(n-shipsize_four+1):
@@ -723,7 +726,7 @@ else:
                                                 if shipsize_three == 0:
                                                     tot += all([1-grid[o[0]][o[1]] for o in Os])
                                                 elif shipsize_three == 1:
-                                                    tot+=calcSingles(grid,n_ones)
+                                                    tot+=calcSingles(grid)
                                                 else:
                                                     for i_three in range(n):
                                                         for c_three in range(n-shipsize_three+1):
@@ -734,7 +737,7 @@ else:
                                                                 if shipsize_four == 0:
                                                                     tot += all([1-grid[o[0]][o[1]] for o in Os])
                                                                 elif shipsize_four == 1:
-                                                                    tot+=calcSingles(grid,n_ones)
+                                                                    tot+=calcSingles(grid)
                                                                 else:
                                                                     for i_four in range(n):
                                                                         for c_four in range(n-shipsize_four+1):
@@ -766,7 +769,7 @@ else:
                                                                 if shipsize_four == 0:
                                                                     tot += all([1-grid[o[0]][o[1]] for o in Os])
                                                                 elif shipsize_four == 1:
-                                                                    tot+=calcSingles(grid,n_ones)
+                                                                    tot+=calcSingles(grid)
                                                                 else:
                                                                     for i_four in range(n):
                                                                         for c_four in range(n-shipsize_four+1):
