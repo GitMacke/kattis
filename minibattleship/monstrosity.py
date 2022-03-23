@@ -1,6 +1,6 @@
 
 import sys
-
+import time
 first = True
 rowcount = 0
 Os = []
@@ -30,7 +30,7 @@ while line:
         break
     line = sys.stdin.readline()
 #placementTime = 0
-#totStart = time.time()
+totStart = time.time()
 n_ones = shipsizes[1]
 def calcSingles(grid):
     nsingles = n_ones
@@ -804,5 +804,6 @@ else:
                     grid[x][i_zero] = 1
 
 print(tot)
+print(time.time()-totStart)
 
         

@@ -73,6 +73,36 @@ def solveGrid(grid,shipsizes):
         
     return tot
 
+tot = 0
+if not any(shipsizes):
+    tot+=all([1-grid[o[0]][o[1]] for o in Os])
+shipsize_0 = max([i for i,x in enumerate(shipsizes) if x != 0])
+if shipsize_0 == 1:
+    tot+=calcSingles(grid,shipsizes[1])
+shipsizes[shipsize_0] -= 1
+for i in range(n):
+    for c in range(n-shipsize_0+1):
+        if all(grid[i][c:c+shipsize_0]):
+            for y in range(c,c+shipsize_0):
+                grid[i][y] = 0
+            if not any(shipsizes):
+                tot+=all([1-grid[o[0]][o[1]] for o in Os])
+            shipsize_1 = max([i for i,x in enumerate(shipsizes) if x != 0])
+            for y in range(c,c+shipsize_0):
+                grid[i][y] = 1
+        vert = [grid[c_i][i] for c_i in range(c,c+shipsize_0)]
+        if all(vert): 
+            for x in range(c,c+shipsize_0):
+                grid[x][i] = 0
+            tot += solveGrid(grid,shipsizes)
+            for x in range(c,c+shipsize_0):
+                grid[x][i] = 1
+    shipsizes[shipsize_0] += 1
+
+
+
+
+
 print(solveGrid(grid,shipsizes))
 #print(time.time()-totStart)
 #print(placementTime)
