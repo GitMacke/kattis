@@ -1,7 +1,5 @@
 from collections import defaultdict
-
 import sys
-
 import random
 import time
 def genInput(n=1000):
@@ -50,7 +48,8 @@ def find_uniqueness(color_dict,color_angle,id_ignore = None):
                     affected += list(try_right)
 
         if left_found and right_found:
-            return (left_neighbor-right_neighbor) % 360, affected
+
+            return ((left_neighbor-right_neighbor-1) % 360), [x for x in affected if x != id_ignore]
 
     return 0, []
 
@@ -73,32 +72,68 @@ neighbor_dict = defaultdict(set)
 uniqueness_dict = dict()
 zero_dict = dict()
 
-line = sys.stdin.readline()
-while line:
-    if first:
-        n_cards = int(line)
-        first = False
-    else:
-        red, green, blue, card_id = [int(x) for x in line.split(' ')]
-        red_dict[red].add(card_id)
-        green_dict[green].add(card_id)
-        blue_dict[blue].add(card_id)
-        card_dict[card_id] = (red, green, blue)
-        counter += 1
-    if counter == n_cards:
-        break
-    line = sys.stdin.readline()
+# line = sys.stdin.readline()
+# while line:
+#     if first:
+#         n_cards = int(line)
+#         if not 0<n_cards<=100000:
+#             import numpy as np
+#             sys.exit()
+#         first = False
+#     else:
+#         red, green, blue, card_id = [int(x) for x in line.split(' ')]
+#         red_dict[red].add(card_id)
+#         green_dict[green].add(card_id)
+#         blue_dict[blue].add(card_id)
+#         card_dict[card_id] = (red, green, blue)
+#         counter += 1
+#         if any([359<x<0 for x in [red,green,blue]]):
+#             import numpy as np
+#             sys.exit()
+#         if 0>card_id>2e31:
+#             import numpy as np
+#             sys.exit()
+#     if counter == n_cards:
+#         break
+#     line = sys.stdin.readline()
+# if counter != n_cards:
+#     import numpy as np
+#     sys.exit()
+
+lines = ['312 45 159 884097181', '245 356 159 1404398805', '142 45 257 1598313068']
+#lines = ['292 168 177 1242932193', '108 304 177 1060434575', '286 166 185 452870374', '250 10 233 952600226']
+'''
+MY OUTPUT:
+452870374
+952600226
+1242932193
+1060434575
+
+CPP OUTPUT:
+452870374
+1242932193
+1060434575
+952600226
 
 
-# lines = genInput(1000)
-# t0 = time.time()
-#
-# for line in lines:
-#     red, green, blue, card_id = [int(x) for x in line.split(' ')]
-#     red_dict[red].add(card_id)
-#     green_dict[green].add(card_id)
-#     blue_dict[blue].add(card_id)
-#     card_dict[card_id] = (red, green, blue)
+MY
+1404398805
+1598313068
+884097181
+
+CPP OUTPUT:
+884097181
+1598313068
+1404398805
+'''
+t0 = time.time()
+
+for line in lines:
+    red, green, blue, card_id = [int(x) for x in line.split(' ')]
+    red_dict[red].add(card_id)
+    green_dict[green].add(card_id)
+    blue_dict[blue].add(card_id)
+    card_dict[card_id] = (red, green, blue)
 
 zero_ids = []
 for k,v in card_dict.items():
@@ -108,6 +143,8 @@ for k,v in card_dict.items():
     uniqueness = r_uniqueness + g_uniqueness + b_uniqueness
     neighbors = r_neighbors + g_neighbors + b_neighbors
     uniqueness_dict[k] = (uniqueness,-k, set(neighbors))
+    print("k:{} uni: {}".format(k,uniqueness))
+    print("r, g, b : {} {} {}".format(r_uniqueness,g_uniqueness,b_uniqueness))
     if uniqueness==0:
         zero_ids.append(k)
 
@@ -118,10 +155,11 @@ while uniqueness_dict.keys():
         least_unique_id = zero_ids.pop()
     else:
         least_unique_id = min(uniqueness_dict,key=uniqueness_dict.get)
-
+    value = uniqueness_dict[least_unique_id][0]
     neighbors = uniqueness_dict.pop(least_unique_id)[2]
     sys.stdout.write(str(least_unique_id))
     sys.stdout.write("\n")
+
     r, g, b = card_dict.pop(least_unique_id)
     red_dict[r].remove(least_unique_id)
     green_dict[g].remove(least_unique_id)
